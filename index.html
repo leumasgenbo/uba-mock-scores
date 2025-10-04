@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#004d99">
+  <link rel="manifest" href="https://example.com/manifest.json"> <title>UB Aca Scores</title>
+  <style>
+    /* ... (YOUR EXISTING CSS GOES HERE - ensure it's mobile-friendly) ... */
+    :root {
+      --primary-color: #004d99; 
+      --secondary-color: #ff9900; 
+      --accent-color: #00b300; 
+      --bg-color: #f0f4f8; 
+      --header-bg: #e6e6fa; 
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+    body { 
+      font-family: 'Arial', sans-serif; 
+      margin: 0; 
+      padding: 10px; 
+      background-color: var(--bg-color);
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px var(--shadow-color);
+    }
+    h2 { 
+      color: var(--primary-color); 
+      text-align: center;
+      margin-bottom: 15px;
+      border-bottom: 3px solid var(--secondary-color);
+      padding-bottom: 5px;
+      font-size: 1.5em;
+    }
+    .tab-nav { margin-bottom: 15px; border-bottom: 2px solid #ccc; display: flex; }
+    .tab-nav button { 
+      flex-grow: 1; padding: 10px; background: #ccc; color: #333; border: none; 
+      cursor: pointer; border-radius: 6px 6px 0 0; margin: 0 1px;
+    }
+    .tab-nav button.active { 
+      background: var(--primary-color); color: white; border-bottom: 2px solid var(--secondary-color);
+    }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+    .controls > div { flex: 1 1 calc(50% - 10px); min-width: 150px; } /* Ensure 2 columns on most mobiles */
+    
+    /* Input and Select styling for PWA feel */
+    input, select, textarea { 
+        width: 100%; 
+        padding: 10px; 
+        margin-top: 5px; 
+        border: 1px solid #ccc; 
+        border-radius: 8px; 
+        box-sizing: border-box; 
+    }
+    button { 
+        width: 100%; /* Full width buttons for mobile */
+        padding: 12px 0; 
+        margin-top: 10px; 
+        background: var(--primary-color); 
+        color: white; 
+        border: none; 
+        border-radius: 8px; 
+        cursor: pointer; 
+        font-weight: bold; 
+    }
+    /* Rest of the styles from previous iteration */
+    /* ... */
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>UB Aca Mock Scores</h2>
+
+    <div class="tab-nav">
+        <button class="active" onclick="switchTab('scoreEntryTab')">Entry</button>
+        <button onclick="switchTab('managementTab')">Roster</button>
+    </div>
+
+    <div id="scoreEntryTab" class="tab-content">
+      <div class="controls">
+        </div>
+      
+      <button onclick="submitScores()">Submit Scores</button>
+      <button onclick="updateScores()">Update Scores</button>
+      <button style="background: var(--accent-color);" onclick="saveToWord()">Generate Report</button>
+    </div>
+
+    <div id="managementTab" class="tab-content hidden">
+        </div>
+
+    <p id="status">Initializing...</p>
+  </div>
+
+  <script>
+    // --- (EXISTING JAVASCRIPT CODE GOES HERE) ---
+    // Make sure your google.script.run calls are retained.
+
+    // PWA Service Worker Registration (must be done in the client script)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        // NOTE: The service-worker.js file must be hosted externally 
+        // (e.g., on GitHub Pages, Google Cloud Storage, or your own server) 
+        // as Apps Script cannot serve arbitrary JS files from its root.
+        /*
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => {
+            console.log('Service Worker registered. Scope is: ' + reg.scope);
+          })
+          .catch(error => {
+            console.log('Service Worker registration failed:', error);
+          });
+        */
+        console.log("Service Worker registration intentionally skipped for GAS PWA.");
+      });
+    }
+
+    // Initialize on load
+    window.onload = function() {
+        filterSubjects(); 
+        loadCurrentList(); 
+        switchTab('scoreEntryTab');
+    };
+  </script>
+</body>
+</html>

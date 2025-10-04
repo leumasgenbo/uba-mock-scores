@@ -1,0 +1,20 @@
+{
+  "short_name": "UB Scores",
+  "name": "United Baylor Academic Scores",
+  "icons": [
+    {
+      "src": "/images/logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "YOUR_DEPLOYED_APPS_SCRIPT_URL_HERE",
+  "display": "standalone",
+  "theme_color": "#004d99",
+  "background_color": "#f0f4f8"
+}

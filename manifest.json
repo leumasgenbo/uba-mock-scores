@@ -13,8 +13,9 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "YOUR_DEPLOYED_APPS_SCRIPT_URL_HERE",
+  "start_url": "https://script.google.com/macros/s/AKfycbwnBKuM59qHJfSJfzaSBv47xye_yTSFBS-lAFvYE3fbY0-BNOqmIkAC6B9Z3J0NZ8wU/exec",
   "display": "standalone",
   "theme_color": "#004d99",
   "background_color": "#f0f4f8"
+
 }
